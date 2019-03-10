@@ -555,7 +555,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="row agileinfo_mail_grids">
 			<div class="col-lg-8 agileinfo_mail_grid_right">
-				<form action="#" method="post">
+				<form action="#" method="post" name="google-form">
 					<div class="row">
 						<div class="col-md-6 wthree_contact_left_grid pr-md-0">
 							<div class="form-group">
@@ -570,12 +570,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<input type="text" name="phone number" class="mb-4 form-control" placeholder="Phone Number" required="">
 							</div>
 							<div class="form-group">
-								<input type="text" name="subject" class="mb-4 form-control" placeholder="Describe about yourself" required="">
+								<input type="text" name="description" class="mb-4 form-control" placeholder="Describe about yourself" required="">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<textarea name="message" placeholder="Motive behind joining Flife" class="form-control" required=""></textarea>
+						<textarea name="motive" placeholder="Motive behind joining Flife" class="form-control" required=""></textarea>
 					</div>
 					<div class="submit-buttons">
 						<input type="submit" value="Submit">
@@ -619,5 +619,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </footer>
 <!-- //footer -->
 </section>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyikKngtxTPfZhdtGWBXfp3hXZDSv6B716WC8r2DtFaffwPMfuN/exec'
+    const form = document.forms['google-form'];
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST',mode: 'no-cors', body: new FormData(form)})
+            .then(response => location.reload())
+            .catch(error => console.error('Error!', error.message))
+    })
+</script>
 </body>
 </html>
